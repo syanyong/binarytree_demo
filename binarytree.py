@@ -1,3 +1,12 @@
+#!/usr/bin/python
+# Title:           binarytree.py
+# Description:     Modified binary tree algorithm.
+# Author:          Sarucha Yanyong
+# Version:         0.1
+# Modified:        2015-12-04
+# Python version:  2.7.9
+# Revision History:        
+#    
 import sys
 
 class BinaryTree():
@@ -16,7 +25,6 @@ class BinaryTree():
         return self.rootid
 
     def insertRight(self,newNode):
-        #print(self.right)
         if self.right == None:
             self.right = BinaryTree(newNode)
         else:
@@ -25,7 +33,6 @@ class BinaryTree():
             self.right = tree
         
     def insertLeft(self,newNode):
-        #print(self.left)
         if self.left == None:
             self.left = BinaryTree(newNode)
         else:
@@ -34,12 +41,18 @@ class BinaryTree():
             self.left = tree
             
     def insertLeftFrom(self, fromNode, newNode):
+        """
+        @note: Add newNode from specific previous node.
+        """
         if self.rootid == fromNode: # First Node
             self.insertLeft(newNode);
         else:
             self.findNode(fromNode).insertLeft(newNode)
             
     def insertRightFrom(self, fromNode, newNode):
+        """
+        @note: Add newNode from specific previous node.
+        """
         if self.rootid == fromNode: # First Node
             self.insertRight(newNode);
         else:
@@ -52,6 +65,9 @@ class BinaryTree():
         return self.treeStore if self.treeStore != None else False;
     
     def _findNode(self, tree, nodeName):
+        """
+        @important: Recursive
+        """
         if tree != None:
             if tree.rootid == nodeName:
                 self.treeStore = tree;
@@ -61,7 +77,7 @@ class BinaryTree():
         self._findNode(tree.left, nodeName)
         self._findNode(tree.right, nodeName)
             
-def printTree2(tree, txt="C>"):
+def printTree(tree, txt="C>"):
     if tree!=None:
         printTree2(tree.getLeftChild(), txt+"L>")
         print(txt +"  "+tree.getNodeValue())
@@ -85,7 +101,7 @@ def testTree():
     t.insertLeftFrom("LPT6103", "LTF6133a")
     t.insertRightFrom("LPT6103", "LTF6133")
     print "Print Tree"
-    printTree2(t)
+    printTree(t)
 
 # testTree()
 
